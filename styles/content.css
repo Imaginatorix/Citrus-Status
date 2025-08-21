@@ -1,0 +1,17 @@
+.citrus-status-emoji {
+  margin-right: 3px;
+  vertical-align: middle;
+}
+
+.citrus-activity-summary {
+  display: inline-block;
+  margin: 6px 10px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: #fff5e6;
+  color: #9a5a00;
+  font-weight: 600;
+  border: 1px solid #ffd6a0;
+  font-size: 50%;
+  vertical-align: middle;
+}
