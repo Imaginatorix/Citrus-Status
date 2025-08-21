@@ -6,6 +6,8 @@
 const VERDICT_TO_EMOJI = new Map([
   ["AC", "✅"],
   ["WA", "❌"],
+  ["TLE", "⏰"],
+  ["MLE", "💾"],
   ["IR", "⚠️"],
   ["CE", "👀"],
 ]);
@@ -49,20 +51,26 @@ async function extractVerdictText(row) {
       const verdictText = verdictCell.innerText;
 
       if (VERDICT_TO_EMOJI.has(verdictText)) {
-        // Some verdicts have priority than others (AC > WA > IR > CE)
+        // Some verdicts have priority than others (AC > WA > TLE > MLE > IR > CE)
         if (!verdict) {
           verdict = verdictText;
         } else if (verdictText === "AC" && verdict !== "AC") {
-          // If we already have a verdict, only replace if it's AC
+          // If we AC, only replace if it's not already AC
           verdict = "AC";
         } else if (verdictText === "WA" && !["AC", "WA"].includes(verdict)) {
-          // If we have WA, only replace if we don't have AC
+          // If we have WA, only replace if we don't have AC or WA
           verdict = "WA";
-        } else if (verdictText === "IR" && !["AC", "WA", "IR"].includes(verdict)) {
-          // If we have IR, only replace if we don't have AC or WA
+        } else if (verdictText === "TLE" && !["AC", "WA", "TLE"].includes(verdict)) {
+          // If we have TLE, only replace if we don't have AC, WA, or TLE
+          verdict = "TLE";
+        } else if (verdictText === "MLE" && !["AC", "WA", "TLE", "MLE"].includes(verdict)) {
+          // If we have MLE, only replace if we don't have AC, WA, TLE, or MLE
+          verdict = "MLE";
+        } else if (verdictText === "IR" && !["AC", "WA", "TLE", "MLE", "IR"].includes(verdict)) {
+          // If we have IR, only replace if we don't have AC, WA, TLE, MLE, or IR
           verdict = "IR";
-        } else if (verdictText === "CE" && !["AC", "WA", "IR", "CE"].includes(verdict)) {
-          // If we have CE, only replace if we don't have AC, WA or IR
+        } else if (verdictText === "CE" && !["AC", "WA", "TLE", "MLE", "IR", "CE"].includes(verdict)) {
+          // If we have CE, only replace if we don't have AC, WA, TLE, MLE, IR, or CE
           verdict = "CE";
         }
       }
