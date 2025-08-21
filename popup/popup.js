@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Defaults for donation + repo links (replace with your real links)
   openUrl("paypalLink", "https://paypal.me/eitjumawanpay");
   openUrl("githubRepo", "https://github.com/Imaginatorix/Citrus-Status");
-  openUrl("githubIssues", "https://github.com/Imaginatorix/Citrus-Status/issues");
+  openUrl("githubIssues", "https://github.com/Imaginatorix/Citrus-Status/issues/new");
 
   // Load statuses
   // chrome.runtime.sendMessage({ type: "getAllStatuses" }, map => {
