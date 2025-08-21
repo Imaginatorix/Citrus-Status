@@ -125,7 +125,7 @@ async function scanProblemsPage() {
     const problemId = inferProblemId(anchor);
 
     let verdictKey = await extractVerdictText(row);
-    if (!verdictKey && map[contest_name][problemId]) {
+    if (!verdictKey && map[contest_name] && map[contest_name][problemId]) {
       verdictKey = map[contest_name][problemId].status;
     }
 
